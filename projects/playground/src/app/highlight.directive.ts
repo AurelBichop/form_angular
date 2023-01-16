@@ -7,6 +7,10 @@ export class HighlightDirective {
   @HostBinding('style.backgroundColor')
   color = 'transparent';
 
+  ngOnInit() {
+    this.color = this.basecolor;
+  }
+
   @Input('background-color')
   backgroundColor = 'purple';
 
