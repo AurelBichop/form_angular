@@ -8,6 +8,8 @@ import { ConfirmDirective } from './directives-attributs/confirm.directive';
 import { UserProfileComponent } from './components/user-profile.component';
 import { CounterComponent } from './components/counter.component';
 import { ModelDirective } from './directives-attributs/model.directive';
+import { FormsModule } from '@angular/forms';
+import { SetClassesDirective } from './directives-attributs/set-classes.directive';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { ModelDirective } from './directives-attributs/model.directive';
     UserProfileComponent,
     CounterComponent,
     ModelDirective,
+    SetClassesDirective,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -3,28 +3,40 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
+    <p
+      [exemple]="prenom"
+      [set-classes]="{
+        red: this.age >= 18,
+        bold: this.nationalite === 'Suisse'
+      }"
+    >
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quaerat
+      libero nobis sed blanditiis est.
+    </p>
 
-    Mon revenu : {{ revenuDeBase }}
-
-    <input
-      [(model)]="revenuDeBase"
-      type="number"
-      placeholder="Vos
-    revenus"
-    />
-
-    <button (click)="calculImpots()">Calcul des impots</button> `,
-  styles: [],
+    <button (click)="prenom = 'Raph'">Changer l'exemple</button>
+    <button (click)="age = 12">Changer l'âge</button>
+    <button (click)="nationalite = 'Francaise'">
+      Changer la Nationalité
+    </button> `,
+  styles: [
+    `
+      .red {
+        color: red;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    `,
+  ],
 })
 export class AppComponent {
-  revenuDeBase = 110;
+  prenom = 'Aurel';
+  age = 40;
+  nationalite = 'Suisse';
 
-  calculImpots() {
-    const impots = this.revenuDeBase + 500;
-    console.log(impots);
-  }
-
-  onRevenusChange(value: number) {
-    this.revenuDeBase = value;
-  }
+  cssClasses = {
+    red: this.age >= 18,
+    bold: this.nationalite === 'Suisse',
+  };
 }
