@@ -13,20 +13,17 @@ import { Component } from '@angular/core';
         <div>
           <label for="length">Longueur du mot de passe : {{ length }}</label>
           <input
+            [(ngModel)]="length"
             id="length"
             type="range"
             min="10"
             max="50"
             name="length"
-            (input)="onChangeLength($event)"
           />
 
           <label>
             <input
-              #uppercaseInput
-              (change)="
-                onChangeSetting(uppercaseInput.name, uppercaseInput.checked)
-              "
+              [(ngModel)]="uppercase"
               role="switch"
               type="checkbox"
               name="uppercase"
@@ -37,10 +34,8 @@ import { Component } from '@angular/core';
 
           <label>
             <input
-              #numbersInput
-              (change)="
-                onChangeSetting(numbersInput.name, numbersInput.checked)
-              "
+              [(ngModel)]="numbers"
+            
               role="switch"
               type="checkbox"
               name="numbers"
@@ -51,10 +46,7 @@ import { Component } from '@angular/core';
 
           <label>
             <input
-              #symbolsInput
-              (change)="
-                onChangeSetting(symbolsInput.name, symbolsInput.checked)
-              "
+              [(ngModel)]="symbols"
               role="switch"
               type="checkbox"
               name="symbols"
@@ -88,25 +80,9 @@ export class AppComponent {
       symbols: this.symbols,
     });
   }
+}
 
-  onChangeLength(event: Event) {
-    const element = event.target as HTMLInputElement;
-    this.length = +element.value;
-  }
-
-  onChangeSetting(settingName: string, checked: boolean) {
-    if (
-      settingName !== 'uppercase' &&
-      settingName !== 'numbers' &&
-      settingName !== 'symbols'
-    ) {
-      return;
-    }
-
-    this[settingName] = checked;
-  }
-
-  /*
+/*
   onChangeUppercase(event: Event) {
     const element = event.target as HTMLInputElement;
     this.uppercase = element.checked;
@@ -122,4 +98,3 @@ export class AppComponent {
     this.symbols = element.checked;
   }
   */
-}
