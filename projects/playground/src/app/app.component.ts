@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
+
+    <input force-lower value="LIOR" type="text" placeholder="Prenom" />
+
     <p
       [ngClass]="{
         red: this.age >= 18,

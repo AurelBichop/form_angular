@@ -10,6 +10,7 @@ import { CounterComponent } from './components/counter.component';
 import { ModelDirective } from './directives-attributs/model.directive';
 import { FormsModule } from '@angular/forms';
 import { SetClassesDirective } from './directives-attributs/set-classes.directive';
+import { ForceLowerDirective } from './directives-attributs/force-lower.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SetClassesDirective } from './directives-attributs/set-classes.directiv
     CounterComponent,
     ModelDirective,
     SetClassesDirective,
+    ForceLowerDirective,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],
