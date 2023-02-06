@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
     <p
-      [exemple]="prenom"
-      [set-classes]="{
+      [ngClass]="{
         red: this.age >= 18,
         bold: this.nationalite === 'Suisse'
       }"
+      [ngStyle]="{ backgroundColor: getBgColor() }"
     >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quaerat
       libero nobis sed blanditiis est.
@@ -39,4 +39,8 @@ export class AppComponent {
     red: this.age >= 18,
     bold: this.nationalite === 'Suisse',
   };
+
+  getBgColor() {
+    return this.age < 18 ? 'green' : 'transparent';
+  }
 }
