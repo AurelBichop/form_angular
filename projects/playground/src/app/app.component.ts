@@ -12,7 +12,16 @@ import { Component } from '@angular/core';
       <h2>Hello H2</h2>
       <p>Vous recevrez l'ensemble de nos informations</p>
       <a href="">en savoir plus</a>
-    </newsletter> `,
+    </newsletter>
+
+    <card title="Ma carte">
+      <p>Lorem Ipsum dolor sit ..</p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate
+        nesciunt ipsum minus voluptas, repudiandae debitis!
+      </p>
+      <footer><a href="#">en savoir plus</a></footer>
+    </card> `,
   styles: [
     `
       .red {
