@@ -3,25 +3,16 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
-
-    <input force-lower value="LIOR" type="text" placeholder="Prenom" />
-
-    <p
-      [ngClass]="{
-        red: this.age >= 18,
-        bold: this.nationalite === 'Suisse'
-      }"
-      [ngStyle]="{ backgroundColor: getBgColor() }"
+    <newsletter
+      (confirm)="onConfirm($event)"
+      title="Recevez nos courriers"
+      button-text="confirmer"
+      placeholder="votre adresse mail svp"
     >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quaerat
-      libero nobis sed blanditiis est.
-    </p>
-
-    <button (click)="prenom = 'Raph'">Changer l'exemple</button>
-    <button (click)="age = 12">Changer l'âge</button>
-    <button (click)="nationalite = 'Francaise'">
-      Changer la Nationalité
-    </button> `,
+      <h2>Hello H2</h2>
+      <p>Vous recevrez l'ensemble de nos informations</p>
+      <a href="">en savoir plus</a>
+    </newsletter> `,
   styles: [
     `
       .red {
@@ -34,16 +25,7 @@ import { Component } from '@angular/core';
   ],
 })
 export class AppComponent {
-  prenom = 'Aurel';
-  age = 40;
-  nationalite = 'Suisse';
-
-  cssClasses = {
-    red: this.age >= 18,
-    bold: this.nationalite === 'Suisse',
-  };
-
-  getBgColor() {
-    return this.age < 18 ? 'green' : 'transparent';
+  onConfirm(email: string) {
+    console.log("Boutton cliqué depuis l'extérieur :", email);
   }
 }
