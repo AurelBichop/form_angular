@@ -4,9 +4,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'password-settings',
   template: `
-    <label for="length">Longueur du mot de passe : {{ length }}</label>
+    <label for="length"
+      >Longueur du mot de passe : {{ defaultSettings.length }}</label
+    >
     <input
-      [(ngModel)]="length"
+      [(ngModel)]="defaultSettings.length"
       (change)="onSettingsChange()"
       id="length"
       type="range"
@@ -17,7 +19,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
     <label>
       <input
-        [(ngModel)]="uppercase"
+        [(ngModel)]="defaultSettings.uppercase"
         (change)="onSettingsChange()"
         role="switch"
         type="checkbox"
@@ -29,7 +31,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
     <label>
       <input
-        [(ngModel)]="numbers"
+        [(ngModel)]="defaultSettings.numbers"
         (change)="onSettingsChange()"
         role="switch"
         type="checkbox"
@@ -41,7 +43,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
     <label>
       <input
-        [(ngModel)]="symbols"
+        [(ngModel)]="defaultSettings.symbols"
         (change)="onSettingsChange()"
         role="switch"
         type="checkbox"
@@ -54,30 +56,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styles: [],
 })
 export class PasswordSettingsComponent {
-  @Input('default-length')
-  length = 20;
-  @Input('default-uppercase')
-  uppercase = false;
-  @Input('default-numbers')
-  numbers = false;
-  @Input('default-symbols')
-  symbols = false;
+  @Input('default-settings')
+  defaultSettings: Settings = {
+    length: 20,
+    uppercase: false,
+    symbols: false,
+    numbers: true,
+  };
 
   @Output('settings-change')
   onSettingsChangeEvent = new EventEmitter<Settings>();
 
   onSettingsChange() {
-    this.onSettingsChangeEvent.emit({
-      length: this.length,
-      uppercase: this.uppercase,
-      numbers: this.numbers,
-      symbols: this.symbols,
-    });
-    console.table({
-      length: this.length,
-      uppercase: this.uppercase,
-      numbers: this.numbers,
-      symbols: this.symbols,
-    });
+    this.onSettingsChangeEvent.emit(this.defaultSettings);
   }
 }

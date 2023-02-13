@@ -10,10 +10,7 @@ import { Settings } from './types';
         <password-display [message]="message"></password-display>
         <div>
           <password-settings
-            [default-length]="settings.length"
-            [default-uppercase]="settings.uppercase"
-            [default-numbers]="settings.numbers"
-            [default-symbols]="settings.symbols"
+            [default-settings]="settingsCopy"
             (settings-change)="onSettingsChange($event)"
           ></password-settings>
           <hr />
@@ -28,11 +25,15 @@ export class AppComponent {
   message = 'Cliquez sur le bouton "Générer"';
 
   settings: Settings = {
-    length: 30,
+    length: 20,
     uppercase: false,
     numbers: false,
     symbols: false,
   };
+
+  get settingsCopy() {
+    return { ...this.settings };
+  }
 
   onSettingsChange(obj: Settings) {
     this.settings = obj;
@@ -43,6 +44,6 @@ export class AppComponent {
   onClickGenerate() {
     this.message = 'MON MDPde_OUF';
     console.log('Génération du Mot de passe');
-    console.table(this.settings);
+    //console.table(this.settings);
   }
 }
