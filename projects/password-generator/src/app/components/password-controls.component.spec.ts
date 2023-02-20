@@ -10,10 +10,7 @@ import { Component } from '@angular/core';
   `,
 })
 class TestComponent {
-  test = false;
-  onGenerate() {
-    this.test = true;
-  }
+  onGenerate() {}
 }
 
 describe('PasswordControlsComponent (avec TestBed)', () => {
@@ -31,8 +28,10 @@ describe('PasswordControlsComponent (avec TestBed)', () => {
   });
 
   it('should emit an event when user clicks the button', () => {
+    const spy = spyOn(component, 'onGenerate');
+
     fixture.nativeElement.querySelector('button').click();
-    expect(component.test).toBeTrue();
+    expect(spy).toHaveBeenCalled();
   });
 });
 
@@ -47,8 +46,9 @@ describe('PasswordControlsComponent (avec Spectator)', () => {
   beforeEach(() => (spectator = createComponent()));
 
   it('should emit an event when user clicks the button', () => {
+    const spy = spyOn(spectator.component, 'onGenerate');
     spectator.click('button');
 
-    expect(spectator.component.test).toBeTrue();
+    expect(spy).toHaveBeenCalled();
   });
 });
