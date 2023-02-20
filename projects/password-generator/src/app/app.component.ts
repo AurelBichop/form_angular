@@ -7,12 +7,12 @@ import { Settings } from './types';
     <div class="container">
       <h1>Générez un mot de passe fort !</h1>
       <div class="grid">
-        <password-display [message]="message"></password-display>
+        <password-settings
+          [default-settings]="settingsCopy"
+          (settings-change)="onSettingsChange($event)"
+        ></password-settings>
         <div>
-          <password-settings
-            [default-settings]="settingsCopy"
-            (settings-change)="onSettingsChange($event)"
-          ></password-settings>
+          <password-display [message]="message"></password-display>
           <hr />
           <password-controls (generate)="onClickGenerate()"></password-controls>
         </div>

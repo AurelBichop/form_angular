@@ -38,16 +38,16 @@ describe('AppComponent (avec Spectator)', () => {
 
   it('should update settings when user clicks on checkboxes', async () => {
     spectator.click('#uppercase');
-    expect(component.uppercase).toBeTrue();
+    expect(component.settings.uppercase).toBeTrue();
 
     spectator.click('#numbers');
-    expect(component.numbers).toBeTrue();
+    expect(component.settings.numbers).toBeTrue();
 
     spectator.click('#symbols');
-    expect(component.symbols).toBeTrue();
+    expect(component.settings.symbols).toBeTrue();
 
     spectator.typeInElement('33', '#length');
-    expect(component.length).toBe(33);
+    expect(component.settings.length).toBe(33);
   });
 });
 
@@ -87,17 +87,17 @@ describe('AppComponent (avec TestBed)', () => {
 
   it('should update settings when user clicks on checkboxes', async () => {
     fixture.nativeElement.querySelector('#uppercase').click();
-    expect(component.uppercase).toBeTrue();
+    expect(component.settings.uppercase).toBeTrue();
 
     fixture.nativeElement.querySelector('#numbers').click();
-    expect(component.numbers).toBeTrue();
+    expect(component.settings.numbers).toBeTrue();
 
     fixture.nativeElement.querySelector('#symbols').click();
-    expect(component.symbols).toBeTrue();
+    expect(component.settings.symbols).toBeTrue();
 
     const length = fixture.nativeElement.querySelector('#length');
     length.value = 33;
     length.dispatchEvent(new Event('input'));
-    expect(fixture.componentInstance.length).toBe(33);
+    expect(fixture.componentInstance.settings.length).toBe(33);
   });
 });

@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     >
     <input
       [(ngModel)]="defaultSettings.length"
-      (change)="onSettingsChange()"
+      (input)="onSettingsChange()"
       id="length"
       type="range"
       min="10"
