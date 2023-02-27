@@ -61,7 +61,7 @@ export class PasswordSettingsComponent {
     length: 20,
     uppercase: false,
     symbols: false,
-    numbers: true,
+    numbers: false,
   };
 
   @Output('settings-change')

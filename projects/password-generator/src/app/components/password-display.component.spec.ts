@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PasswordDisplayComponent } from './password-display.component';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
+import {
+  Spectator,
+  createComponentFactory,
+  SpectatorHost,
+  createHostFactory,
+} from '@ngneat/spectator';
 import { Component } from '@angular/core';
 
 @Component({
@@ -25,14 +30,18 @@ describe('PasswordDisplayComponent (avec TestBed)', () => {
 });
 
 describe('PasswordDisplayComponent (avec Spectator)', () => {
-  let spectator: Spectator<TestComponent>;
+  let spectator: SpectatorHost<PasswordDisplayComponent>;
 
-  const createComponent = createComponentFactory({
-    component: TestComponent,
-    declarations: [PasswordDisplayComponent],
+  const createComponent = createHostFactory({
+    component: PasswordDisplayComponent,
   });
 
-  beforeEach(() => (spectator = createComponent()));
+  beforeEach(
+    () =>
+      (spectator = createComponent(
+        `<password-display message="MOCK_MESSAGE"></password-display>`
+      ))
+  );
 
   it('should display the input message', () => {
     expect(spectator.query('article')).toHaveText('MOCK_MESSAGE');
