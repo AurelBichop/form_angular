@@ -14,8 +14,10 @@ export class RepeatDirective {
 
   ngOnChanges() {
     this.containerRef.clear();
-    for (let i = 1; i <= this.repeat; i++) {
-      this.containerRef.createEmbeddedView(this.templateRef, { index: i });
+    for (let i = 0; i < this.repeat; i++) {
+      this.containerRef.createEmbeddedView(this.templateRef, {
+        $implicit: i + 1,
+      });
     }
   }
 }

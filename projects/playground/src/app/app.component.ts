@@ -11,7 +11,7 @@ import {
 
     <h2>Pagination</h2>
 
-    <a *repeat="pages; let numero = index" href="#">Page {{ numero }}</a>
+    <a *repeat="pages; let numero" href="#">Page {{ numero }}</a>
 
     <button (click)="addPages()">Pages ++</button>
 
