@@ -15,8 +15,8 @@ export class LoopDirective {
   ngOnInit() {
     this.arr.forEach((item, index) => {
       this.containerRef.createEmbeddedView(this.templateRef, {
-        item,
         index,
+        $implicit: item,
       });
     });
   }
