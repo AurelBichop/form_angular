@@ -5,11 +5,13 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
-    <ng-template #monTemplate>
-      <h2>Hello-World</h2>
+    <ng-template #monTemplate let-prenom="firstname" let-age="age">
+      <h2>Hello-{{ prenom }}</h2>
+      Vous avez {{ age }}
     </ng-template>
 
     <ng-container #monContainer>
@@ -29,7 +31,10 @@ export class AppComponent {
   onClick() {
     if (this.monTemplate) {
       this.monContainer?.clear();
-      this.monContainer?.createEmbeddedView(this.monTemplate);
+      const ref = this.monContainer?.createEmbeddedView(this.monTemplate, {
+        firstname: 'Aurel',
+        age: 35,
+      });
     }
   }
 
