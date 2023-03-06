@@ -1,10 +1,10 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[loop]',
+  selector: '[loopOf]',
 })
 export class LoopDirective {
-  @Input('loop')
+  @Input('loopOf')
   arr: any[] = [];
 
   constructor(

@@ -10,13 +10,13 @@ import {
   template: `<h1>Découverte Angular</h1>
 
     <ul>
-      <li *loop="personnes; let personne; let numero = index">
+      <li *loop="let personne of personnes; let numero = index">
         {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
       </li>
     </ul>
 
     <ul>
-      <ng-template [loop]="personnes" let-personne let-numero="index">
+      <ng-template [loopOf]="personnes" let-personne let-numero="index">
         <li>
           {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
         </li>
