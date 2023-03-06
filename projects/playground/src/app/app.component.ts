@@ -9,15 +9,21 @@ import {
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
 
+    <h2>Pagination</h2>
+
+    <a *repeat="pages; let numero = index" href="#">Page {{ numero }}</a>
+
+    <button (click)="addPages()">Pages ++</button>
+
     <ul>
-      <li *loop="let personne of personnes; let numero = index">
+      <li *ngFor="let personne of personnes; let numero = index">
         {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
       </li>
     </ul>
 
     <button (click)="addPersonne()">Ajouter</button>
 
-    <div *if="age >= 18; else autre">
+    <div *ngIf="age >= 18; else autre">
       <h2>Vous êtes Majeur !</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
@@ -40,6 +46,8 @@ import {
 export class AppComponent {
   age = 35;
 
+  pages = 5;
+
   personnes = [
     { prenom: 'Aurel', nom: 'bichop' },
     { prenom: 'Aby', nom: 'bouldog' },
@@ -50,5 +58,9 @@ export class AppComponent {
       prenom: 'Jean',
       nom: 'Fontaine',
     });
+  }
+
+  addPages() {
+    this.pages += 1;
   }
 }
