@@ -5,40 +5,20 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-
 @Component({
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
-    <ng-template #monTemplate let-prenom="firstname" let-age="age">
-      <h2>Hello-{{ prenom }}</h2>
-      Vous avez {{ age }}
+
+    <h2 *if="age > 18">Le If avec etoile fonctionne</h2>
+
+    <ng-template #monTemplate [if]="age > 18">
+      <h2>Le IF Fonctionne</h2>
     </ng-template>
 
-    <ng-container #monContainer>
-      <h3>Je suis le Container</h3>
-    </ng-container>
-
-    <button (click)="onClick()">Tester</button> `,
+    <input type="number" placeholder="Votre age" #ageInput />
+    <button (click)="age = ageInput.valueAsNumber">Modifier l'age</button> `,
   styles: [``],
 })
 export class AppComponent {
-  @ViewChild('monTemplate')
-  monTemplate?: TemplateRef<any>;
-
-  @ViewChild('monContainer', { read: ViewContainerRef })
-  monContainer?: ViewContainerRef;
-
-  onClick() {
-    if (this.monTemplate) {
-      this.monContainer?.clear();
-      const ref = this.monContainer?.createEmbeddedView(this.monTemplate, {
-        firstname: 'Aurel',
-        age: 35,
-      });
-    }
-  }
-
-  ngAfterViewInit() {
-    console.log(this.monContainer, this.monTemplate);
-  }
+  age = 36;
 }
