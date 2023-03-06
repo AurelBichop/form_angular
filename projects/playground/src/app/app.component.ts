@@ -9,6 +9,20 @@ import {
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
 
+    <ul>
+      <li *loop="personnes; let personne = item; let numero = index">
+        {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
+      </li>
+    </ul>
+
+    <ul>
+      <ng-template [loop]="personnes" let-personne="item" let-numero="index">
+        <li>
+          {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
+        </li>
+      </ng-template>
+    </ul>
+
     <div *if="age >= 18; else autre">
       <h2>Vous êtes Majeur !</h2>
       <p>
@@ -30,5 +44,10 @@ import {
   styles: [``],
 })
 export class AppComponent {
-  age = 36;
+  age = 35;
+
+  personnes = [
+    { prenom: 'Aurel', nom: 'bichop' },
+    { prenom: 'Aby', nom: 'bouldog' },
+  ];
 }

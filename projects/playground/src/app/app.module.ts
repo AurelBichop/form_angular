@@ -14,6 +14,7 @@ import { ForceLowerDirective } from './directives-attributs/force-lower.directiv
 import { NewsletterComponent } from './components/newsletter.component';
 import { CardComponent } from './components/card.component';
 import { IfDirective } from './directives-structurelles/if.directive';
+import { LoopDirective } from './directives-structurelles/loop.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { IfDirective } from './directives-structurelles/if.directive';
     NewsletterComponent,
     CardComponent,
     IfDirective,
+    LoopDirective,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],
