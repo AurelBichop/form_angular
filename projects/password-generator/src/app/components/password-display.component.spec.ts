@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PasswordDisplayComponent } from './password-display.component';
-import {
-  Spectator,
-  createComponentFactory,
-  SpectatorHost,
-  createHostFactory,
-} from '@ngneat/spectator';
+import { SpectatorHost, createHostFactory } from '@ngneat/spectator';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'test',
-  template: `<password-display message="MOCK_MESSAGE"></password-display>`,
+  template: `<password-display password="MOCK_PASSWORD"></password-display>`,
 })
 class TestComponent {}
+
+@Component({
+  selector: 'test',
+  template: `<password-display></password-display>`,
+})
+class TestDefaultComponent {}
 
 describe('PasswordDisplayComponent (avec TestBed)', () => {
   it('should display the input message', () => {
@@ -25,7 +26,20 @@ describe('PasswordDisplayComponent (avec TestBed)', () => {
 
     const article = fixture.nativeElement.querySelector('article');
 
-    expect(article.textContent).toContain('MOCK_MESSAGE');
+    expect(article.textContent).toContain('MOCK_PASSWORD');
+  });
+
+  it('should display a phrase whe, no password is given', () => {
+    TestBed.configureTestingModule({
+      declarations: [PasswordDisplayComponent, TestDefaultComponent],
+    });
+
+    const fixture = TestBed.createComponent(TestDefaultComponent);
+    fixture.autoDetectChanges();
+
+    const article = fixture.nativeElement.querySelector('article');
+
+    expect(article.textContent).toContain('Cliquez sur le bouton "Générer"');
   });
 });
 
@@ -36,14 +50,19 @@ describe('PasswordDisplayComponent (avec Spectator)', () => {
     component: PasswordDisplayComponent,
   });
 
-  beforeEach(
-    () =>
-      (spectator = createComponent(
-        `<password-display message="MOCK_MESSAGE"></password-display>`
-      ))
-  );
+  it('should display a phrase whe, no password is given', () => {
+    spectator = createComponent(`<password-display></password-display>`);
+
+    expect(spectator.query('article')).toHaveText(
+      'Cliquez sur le bouton "Générer"'
+    );
+  });
 
   it('should display the input message', () => {
-    expect(spectator.query('article')).toHaveText('MOCK_MESSAGE');
+    spectator = createComponent(
+      `<password-display password="MOCK_PASSWORD"></password-display>`
+    );
+
+    expect(spectator.query('article')).toHaveText('MOCK_PASSWORD');
   });
 });
