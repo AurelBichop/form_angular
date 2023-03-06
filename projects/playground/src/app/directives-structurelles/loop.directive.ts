@@ -7,17 +7,25 @@ export class LoopDirective {
   @Input('loopOf')
   arr: any[] = [];
 
+  oldArray: any[] = [];
+
   constructor(
     private templateRef: TemplateRef<any>,
     private containerRef: ViewContainerRef
   ) {}
 
-  ngOnInit() {
-    this.arr.forEach((item, index) => {
-      this.containerRef.createEmbeddedView(this.templateRef, {
-        index,
-        $implicit: item,
+  ngDoCheck() {
+    if (this.oldArray.length !== this.arr.length) {
+      this.containerRef.clear();
+
+      this.arr.forEach((item, index) => {
+        this.containerRef.createEmbeddedView(this.templateRef, {
+          index,
+          $implicit: item,
+        });
       });
-    });
+
+      this.oldArray = [...this.arr];
+    }
   }
 }

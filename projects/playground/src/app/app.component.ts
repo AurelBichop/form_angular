@@ -15,13 +15,7 @@ import {
       </li>
     </ul>
 
-    <ul>
-      <ng-template [loopOf]="personnes" let-personne let-numero="index">
-        <li>
-          {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
-        </li>
-      </ng-template>
-    </ul>
+    <button (click)="addPersonne()">Ajouter</button>
 
     <div *if="age >= 18; else autre">
       <h2>Vous êtes Majeur !</h2>
@@ -50,4 +44,11 @@ export class AppComponent {
     { prenom: 'Aurel', nom: 'bichop' },
     { prenom: 'Aby', nom: 'bouldog' },
   ];
+
+  addPersonne() {
+    this.personnes.push({
+      prenom: 'Jean',
+      nom: 'Fontaine',
+    });
+  }
 }
