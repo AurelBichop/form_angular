@@ -17,6 +17,8 @@ import { IfDirective } from './directives-structurelles/if.directive';
 import { LoopDirective } from './directives-structurelles/loop.directive';
 import { RepeatDirective } from './directives-structurelles/repeat.directive';
 import { DeclarationComponent } from './components/declaration.component';
+import { RecapComponent } from './components/recap.component';
+import { TaxesService } from './services/taxes.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,10 @@ import { DeclarationComponent } from './components/declaration.component';
     LoopDirective,
     RepeatDirective,
     DeclarationComponent,
+    RecapComponent,
   ],
   imports: [BrowserModule, FormsModule],
-  providers: [],
+  providers: [TaxesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

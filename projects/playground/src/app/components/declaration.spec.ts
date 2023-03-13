@@ -19,20 +19,9 @@ describe('Déclaration component avec testBed', () => {
     TestBed.overrideComponent(DeclarationComponent, {
       set: {
         providers: [
-          //   {
-          //     provide: TaxesService,
-          //     useFactory: () => {
-          //       return new FakeService();
-          //     },
-          //   },
-          //   {
-          //     provide: TaxesService,
-          //     useClass: FakeService,
-          //   },
-
           {
             provide: TaxesService,
-            useValue: fakeService,
+            useClass: FakeService,
           },
         ],
       },
