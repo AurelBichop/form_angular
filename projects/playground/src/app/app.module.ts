@@ -16,6 +16,7 @@ import { CardComponent } from './components/card.component';
 import { IfDirective } from './directives-structurelles/if.directive';
 import { LoopDirective } from './directives-structurelles/loop.directive';
 import { RepeatDirective } from './directives-structurelles/repeat.directive';
+import { DeclarationComponent } from './components/declaration.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RepeatDirective } from './directives-structurelles/repeat.directive';
     IfDirective,
     LoopDirective,
     RepeatDirective,
+    DeclarationComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],

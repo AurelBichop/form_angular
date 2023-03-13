@@ -8,59 +8,7 @@ import {
 @Component({
   selector: 'app-root',
   template: `<h1>Découverte Angular</h1>
-
-    <h2>Pagination</h2>
-
-    <a *repeat="pages; let numero" href="#">Page {{ numero }}</a>
-
-    <button (click)="addPages()">Pages ++</button>
-
-    <ul>
-      <li *ngFor="let personne of personnes; let numero = index">
-        {{ personne.prenom }} {{ personne.nom }} (numéro {{ numero + 1 }})
-      </li>
-    </ul>
-
-    <button (click)="addPersonne()">Ajouter</button>
-
-    <div *ngIf="age >= 18; else autre">
-      <h2>Vous êtes Majeur !</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-        repellendus delectus quod, natus sapiente aliquid consequuntur,
-        voluptatem deserunt tempore quaerat laboriosam enim ea incidunt,
-        provident id explicabo vitae eum dolorem.
-      </p>
-      <button>Voir le site</button>
-    </div>
-
-    <ng-template #autre>
-      <h2>Vous n'êtes pas Majeur</h2>
-      <p>Merci de sortir du Site</p>
-    </ng-template>
-
-    <input type="number" placeholder="Votre age" #ageInput />
-    <button (click)="age = ageInput.valueAsNumber">Modifier l'age</button> `,
+    <declaration-impots></declaration-impots> `,
   styles: [``],
 })
-export class AppComponent {
-  age = 35;
-
-  pages = 5;
-
-  personnes = [
-    { prenom: 'Aurel', nom: 'bichop' },
-    { prenom: 'Aby', nom: 'bouldog' },
-  ];
-
-  addPersonne() {
-    this.personnes.push({
-      prenom: 'Jean',
-      nom: 'Fontaine',
-    });
-  }
-
-  addPages() {
-    this.pages += 1;
-  }
-}
+export class AppComponent {}
