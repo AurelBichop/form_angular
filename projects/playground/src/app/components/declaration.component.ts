@@ -10,15 +10,19 @@ import { TaxesService } from '../services/taxes.service';
     <article>Vos impots : {{ resultats }}€</article>
   `,
   providers: [
-    {
-      provide: TaxesService,
-      useFactory: () => {
-        return new TaxesService();
-      },
-    },
+    // {
+    //   provide: TaxesService,
+    //   useFactory: () => {
+    //     return new TaxesService();
+    //   },
+    // },
+    // {
+    //   provide: TaxesService,
+    //   useClass: TaxesService,
+    // },
+    TaxesService,
   ],
 })
-
 export class DeclarationComponent {
   resultats: number = 0;
 
