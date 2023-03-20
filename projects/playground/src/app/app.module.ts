@@ -18,7 +18,7 @@ import { LoopDirective } from './directives-structurelles/loop.directive';
 import { RepeatDirective } from './directives-structurelles/repeat.directive';
 import { DeclarationComponent } from './components/declaration.component';
 import { RecapComponent } from './components/recap.component';
-import { TaxesService } from './services/taxes.service';
+import { TAUX_TVA, TaxesService } from './services/taxes.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,14 @@ import { TaxesService } from './services/taxes.service';
     RecapComponent,
   ],
   imports: [BrowserModule, FormsModule],
-  providers: [TaxesService],
+  //providers: [],
+  providers: [
+    TaxesService,
+    {
+      provide: TAUX_TVA,
+      useValue: 0.2,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,15 @@
+import { Inject, Injectable, InjectionToken } from '@angular/core';
+/*
+@Injectable({
+  providedIn: 'root',
+})*/
+
+export const TAUX_TVA = new InjectionToken('le taux de tva');
+@Injectable()
 export class TaxesService {
   total = 0;
 
-  constructor() {
+  constructor(@Inject(TAUX_TVA) private tauxDeTVA: number) {
     console.log('je suis le TAxes serviece N°', Math.random());
   }
 
@@ -11,6 +19,6 @@ export class TaxesService {
     this.total += revenu;
     // 500 lignes de calcul
     // contenant en plus des appels HTTP
-    return revenu + 1000;
+    return revenu + 500;
   }
 }
