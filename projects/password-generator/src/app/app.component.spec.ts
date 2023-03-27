@@ -2,10 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Spectator, createComponentFactory } from '@ngneat/spectator';
 import { FormsModule } from '@angular/forms';
-import { PasswordDisplayComponent } from './components/password-display.component';
-import { PasswordControlsComponent } from './components/password-controls.component';
-import { PasswordSettingsComponent } from './components/password-settings.component';
-import { PasswordGeneratorService } from './password-generator.service';
+import { PasswordDisplayComponent } from './password-generator/password-display.component';
+import { PasswordControlsComponent } from './password-generator/password-controls.component';
+import { PasswordSettingsComponent } from './password-generator/password-settings.component';
+import { PasswordGeneratorService } from './password-generator/password-generator.service';
+import { PasswordGeneratorModule } from './password-generator/password-generator.module';
 
 describe('AppComponent (avec Spectator)', () => {
   let spectator: Spectator<AppComponent>;
@@ -13,15 +14,9 @@ describe('AppComponent (avec Spectator)', () => {
 
   const createComponent = createComponentFactory({
     component: AppComponent,
-    declarations: [
-      AppComponent,
-      PasswordDisplayComponent,
-      PasswordControlsComponent,
-      PasswordSettingsComponent,
-    ],
-    providers: [PasswordGeneratorService],
+    declarations: [AppComponent],
     mocks: [PasswordGeneratorService], // Permet d'espionner toute les methodes.
-    imports: [FormsModule],
+    imports: [PasswordGeneratorModule],
   });
 
   beforeEach(() => {
@@ -64,14 +59,8 @@ describe('AppComponent (avec TestBed)', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent,
-        PasswordDisplayComponent,
-        PasswordControlsComponent,
-        PasswordSettingsComponent,
-      ],
-      providers: [PasswordGeneratorService],
-      imports: [FormsModule],
+      declarations: [AppComponent],
+      imports: [PasswordGeneratorModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
