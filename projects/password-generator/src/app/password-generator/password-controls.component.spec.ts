@@ -59,6 +59,9 @@ describe('PasswordControlsComponent (avec TestBed)', () => {
     fixture.nativeElement.querySelector('#copy').click();
     // Alors le mdp est copier
     expect(spy).toHaveBeenCalledWith('MOCK_PASSWORD');
+    expect(
+      fixture.nativeElement.querySelector('#copy-message').textContent
+    ).toContain('Le mot de passe a été copié');
   });
 });
 
@@ -102,7 +105,7 @@ describe('PasswordControlsComponent (avec Spectator)', () => {
     spectator.click('#copy');
     // Alors le mdp est copier
     expect(spy).toHaveBeenCalledWith('MOCK_PASSWORD');
-    expect(spectator.query('#message-copy-password')).toHaveText(
+    expect(spectator.query('#copy-message')).toHaveText(
       'Le mot de passe a été copié'
     );
   });

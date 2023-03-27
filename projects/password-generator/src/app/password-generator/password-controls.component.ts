@@ -7,22 +7,23 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     <button id="copy" (click)="onClickCopy()" *ngIf="password">
       Copier le mot de passe
     </button>
-    <span id="message-copy-password" *ngIf="message">{{ message }}</span>
+    <strong id="copy-message" *ngIf="hasBeenCopied"
+      >Le mot de passe a été copié</strong
+    >
   `,
   styles: [],
 })
 export class PasswordControlsComponent {
+  hasBeenCopied = false;
+
   @Output('generate')
   onGenerateEvent = new EventEmitter();
 
   @Input()
   password?: string;
 
-  @Input()
-  message?: string;
-
   onClickGenerate() {
-    this.message = '';
+    this.hasBeenCopied = false;
     this.onGenerateEvent.emit();
   }
 
@@ -31,6 +32,6 @@ export class PasswordControlsComponent {
       return;
     }
     navigator.clipboard.writeText(this.password);
-    this.message = 'Le mot de passe a été copié';
+    this.hasBeenCopied = true;
   }
 }
