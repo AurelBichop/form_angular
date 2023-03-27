@@ -7,6 +7,7 @@ import { PasswordControlsComponent } from './password-generator/password-control
 import { PasswordSettingsComponent } from './password-generator/password-settings.component';
 import { PasswordGeneratorService } from './password-generator/password-generator.service';
 import { PasswordGeneratorModule } from './password-generator/password-generator.module';
+import { generate } from 'generate-password-browser';
 
 describe('AppComponent (avec Spectator)', () => {
   let spectator: Spectator<AppComponent>;
@@ -50,6 +51,19 @@ describe('AppComponent (avec Spectator)', () => {
 
     spectator.typeInElement('33', '#length');
     expect(component.settings.length).toBe(33);
+  });
+
+  it('should show a copy button when password was generated', () => {
+    // Spy sur le service de Generation
+    const service = spectator.inject(PasswordGeneratorService);
+
+    service.generate.and.returnValue('MOCK_PASSWORD');
+
+    // Quand je click sur le bouton générer
+    spectator.click('#generate');
+
+    // Alors je dois voir apparaitre le bouton copy
+    expect(spectator.query('#copy')).toBeTruthy();
   });
 });
 
@@ -101,5 +115,18 @@ describe('AppComponent (avec TestBed)', () => {
     length.value = 33;
     length.dispatchEvent(new Event('input'));
     expect(fixture.componentInstance.settings.length).toBe(33);
+  });
+
+  it('should show a copy button when password was generated', () => {
+    // Spy sur le service de Generation
+    const service = TestBed.inject(PasswordGeneratorService);
+    const spy = spyOn(service, 'generate');
+    spy.and.returnValue('MOCK_PASSWORD');
+
+    // Quand je click sur le bouton générer
+    fixture.nativeElement.querySelector('#generate').click();
+    fixture.detectChanges();
+    // Alors je dois voir apparaitre le bouton copy
+    expect(fixture.nativeElement.querySelector('#copy')).toBeTruthy();
   });
 });

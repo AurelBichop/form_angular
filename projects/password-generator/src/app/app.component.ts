@@ -15,7 +15,10 @@ import { PasswordGeneratorService } from './password-generator/password-generato
             (settings-change)="onSettingsChange($event)"
           ></password-settings>
           <hr />
-          <password-controls (generate)="onClickGenerate()"></password-controls>
+          <password-controls
+            [password]="password"
+            (generate)="onClickGenerate()"
+          ></password-controls>
         </div>
       </div>
     </div>
