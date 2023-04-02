@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'password-controls',
@@ -22,8 +28,15 @@ export class PasswordControlsComponent {
   @Input()
   password?: string;
 
-  onClickGenerate() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes['password']) {
+      return;
+    }
+
     this.hasBeenCopied = false;
+  }
+
+  onClickGenerate() {
     this.onGenerateEvent.emit();
   }
 

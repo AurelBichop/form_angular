@@ -63,6 +63,24 @@ describe('PasswordControlsComponent (avec TestBed)', () => {
       fixture.nativeElement.querySelector('#copy-message').textContent
     ).toContain('Le mot de passe a été copié');
   });
+
+  it('should make the message dispappear if a new password is generated', () => {
+    const spy = spyOn(navigator.clipboard, 'writeText');
+    fixture.componentInstance.password = 'MOCK_PASSWORD';
+
+    fixture.nativeElement.querySelector('#copy').click();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('#copy-message')).toExist;
+
+    fixture.nativeElement.password = 'NEW_MOCK_PASSWORD';
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('#copy-message')).toBeNull;
+
+    fixture.nativeElement.querySelector('#copy').click();
+    expect(fixture.nativeElement.querySelector('#copy-message')).toExist;
+  });
 });
 
 describe('PasswordControlsComponent (avec Spectator)', () => {
@@ -103,10 +121,24 @@ describe('PasswordControlsComponent (avec Spectator)', () => {
     spectator.setInput('password', 'MOCK_PASSWORD');
     // Quand je clique sur le bouton copy
     spectator.click('#copy');
+
     // Alors le mdp est copier
     expect(spy).toHaveBeenCalledWith('MOCK_PASSWORD');
     expect(spectator.query('#copy-message')).toHaveText(
       'Le mot de passe a été copié'
     );
+  });
+
+  it('should make the message dispappear if a new password is generated', () => {
+    const spy = spyOn(navigator.clipboard, 'writeText');
+    spectator.setInput('password', 'MOCK_PASSWORD');
+    spectator.click('#copy');
+    expect(spectator.query('#copy-message')).toExist();
+
+    spectator.setInput('password', 'NEW_MOCK_PASSWORD');
+    expect(spectator.query('#copy-message')).toBeNull();
+
+    spectator.click('#copy');
+    expect(spectator.query('#copy-message')).toExist();
   });
 });
