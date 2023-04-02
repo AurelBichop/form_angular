@@ -67,10 +67,10 @@ describe('PasswordControlsComponent (avec TestBed)', () => {
   it('should make the message dispappear if a new password is generated', () => {
     const spy = spyOn(navigator.clipboard, 'writeText');
     fixture.componentInstance.password = 'MOCK_PASSWORD';
-
-    fixture.nativeElement.querySelector('#copy').click();
     fixture.detectChanges();
 
+    (document.querySelector('#copy') as HTMLButtonElement).click();
+    
     expect(fixture.nativeElement.querySelector('#copy-message')).toExist;
 
     fixture.nativeElement.password = 'NEW_MOCK_PASSWORD';
